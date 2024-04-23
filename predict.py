@@ -50,7 +50,7 @@ if __name__ == '__main__':
         mask = cv2.imread(mask, 0)
         mask = tf(mask)
         model = UNet()
-        model.load_state_dict(torch.load('./output/unet_tgs_salt.pth'))
+        model.load_state_dict(torch.load('./output/unet_tgs_salt.pth', map_location='cpu'))
         prediction = predict(model, image.unsqueeze(dim=0))
         prediction = (prediction >= config.THRESHOLD).type(torch.float32)
         prepare_plot(image.permute(1,2,0).detach().numpy(), mask.permute(1,2,0).detach().numpy(), prediction[0].permute(1,2,0).detach().numpy())
