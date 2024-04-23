@@ -31,6 +31,7 @@ def prepare_plot(original, mask, prediction):
     axes[2].imshow(prediction)
     axes[2].set_title('Prediction')
     plt.axis(False)
+    plt.savefig(os.path.join(config.BASE_OUTPUT, f'prediction_{i + 1}.png'))
     plt.show()
     
 def predict(model, image):
